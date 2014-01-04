@@ -8,21 +8,23 @@ app.use(express.static(__dirname + '/public'));
 var test = {
 	title: 'mreca',
 	supplies: ["Type help to see all available commands.","test", "test2", "test3"]
-
 }
+var request = {};
 
 app.get('/',function(req, res){
-	res.render('index.ejs',test);
+	res.render('index.ejs');
 });
 
 app.get('/getuser',function(req,res){
 	var name = req.query.u;
+	request.who = name;
 	if (typeof name === "undefined"){
 		res.send({"error":"No username given"});
 	}
 	else {
-		console.log("Making a query for user: "+name);
-		db.getUser(name,res)
+		words = db.getUser(name,res);
+		request.words = words;
+		// new EJS({url: '/index.ejs'}).update('my_element', {supplies: ['mop']})
 	}
 });
 

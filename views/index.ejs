@@ -15,20 +15,13 @@
 <body>
 	<input type="text" >
 	<datalist id="">
-    	<% for(var i=0; i<supplies.length; i++) {%>
-    		<select id="_select"><%= supplies[i] %></select>
-    	<% } %>
+
 	</datalist>
 	<title></title>
 	<div class="results">
 		<div class="top-list">
 			<h1>Empty<br>:(</h1>
-			<!-- <h1>Top Ten for "<%= title %>"</h1> -->
-			<ol>
-			<% for(var i=0; i<supplies.length; i++) {%>
-			   <!-- <li><%= supplies[i] %></li> -->
-			<% } %>	
-			</ol>
+			
 		</div>
 		<div class="graph">
 
@@ -37,9 +30,6 @@
 	<div class="help">
 		<h1>Commands</h1>
 		<ol>
-		<% for(var i=0; i<supplies.length; i++) {%>
-		   <!-- <li><%= supplies[i] %></li> -->
-		<% } %>	
 		</ol>		
 	</div>
 	<footer>

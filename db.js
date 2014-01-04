@@ -1,30 +1,32 @@
-var Db = require('mongodb').Db;
+var databaseUrl = "test";
+var collections = ["words"]
+var db = require("mongojs").connect(databaseUrl, collections);
+
 var env = process.env.NODE_ENV || 'development';
 var async = require('async');
 var _ = require('lodash');
 
 var getUser = function(user, fun) {
-    Db.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/test', function(err, db) {
-        if(!err) {
-            console.log("We are connected!");
-            console.log(db.collection('words').find());//{who:user},function(err, result) {
-            //     if (err)
-            //         return console.dir(err);
-            //     else{
-            //         // fun(result);
-            //         var db_return = result;//db.words.find({who:name});
-            //         console.dir(db_return);
-            //         var resulting_array = _.flatten(db_return, 'words');
-            //         resulting_array = sort(resulting_array);
-            //         var top_ten = _.last(resulting_array,10);
-            //         console.log(top_ten);
-            //         // db.getUser(mreca);
-            //     }
-            // });
-        }
-        else {
-            console.log("Error, not connected: " + err);
-        }
+    console.log("Making a query for user: "+user);
+    db.words.find({who: user}, function(err, users) {
+        if( err || !users) 
+            console.log("No users found");
+        else 
+            // console.log(users);
+            var resulting_array = _.flatten(users, 'words');
+            
+            resulting_array = _.countBy(resulting_array);
+            
+            console.log(resulting_array);
+            
+            resulting_array = sort(resulting_array);
+            
+            console.log(resulting_array);
+            
+            var top_ten = _.last(resulting_array,3).reverse();
+            
+            console.log(top_ten);
+            return top_ten;
     });
 };
 
