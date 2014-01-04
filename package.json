@@ -1,0 +1,20 @@
+{
+  "author": {
+      "name":"Michael Recachinas"
+    },
+  "name": "node-example",
+  "version": "0.0.1",
+  "dependencies": {
+    "requirejs": "~2.1.8",
+    "express": "2.5.x",
+    "mongodb": "1.2.9",
+    "express": "3.0.6",
+    "ejs": "0.8.3",
+    "underscore":"~1.4.4",
+    "lodash":"~2.2.1"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
+}

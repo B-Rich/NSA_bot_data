@@ -1,0 +1,4 @@
+{ 
+	title: 'Hello'
+	supplies: ["test", "test2", "test3"]
+}
