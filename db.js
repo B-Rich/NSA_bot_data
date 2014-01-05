@@ -1,6 +1,7 @@
 var databaseUrl = "test";
 var collections = ["words"]
 var db = require("mongojs").connect(databaseUrl, collections);
+var ejs = require("ejs");
 
 var env = process.env.NODE_ENV || 'development';
 var async = require('async');
@@ -11,22 +12,17 @@ var getUser = function(user, fun) {
     db.words.find({who: user}, function(err, users) {
         if( err || !users) 
             console.log("No users found");
-        else 
-            // console.log(users);
-            var resulting_array = _.flatten(users, 'words');
-            
+        else{
+            var tmp = users;
+            console.log(users)
+            var resulting_array = _.flatten(tmp, 'words');
             resulting_array = _.countBy(resulting_array);
-            
-            console.log(resulting_array);
-            
             resulting_array = sort(resulting_array);
-            
-            console.log(resulting_array);
-            
-            var top_ten = _.last(resulting_array,3).reverse();
-            
-            console.log(top_ten);
-            return top_ten;
+            top_ten = resulting_array.reverse();
+            console.log(top_ten)
+            fun.send({t:top_ten, w:[]});
+        }
+        return;
     });
 };
 
