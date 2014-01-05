@@ -37,6 +37,10 @@ $(document).ready(function() {
 	}
 	click();
 
+	var graph = function(json) {
+		
+	}
+
 	var query = function(input){
 		var start = new Date().getTime();
 		var end, elapsed;
